@@ -29,7 +29,15 @@ public:
   {
     std::list<Account>::iterator account;
     account = FindAccount(accountNumber);
-    account->Credit(value);
+
+    if (value < 0)
+    {
+      std::cout << "Valor informado não pode ser negativo, favor realizar operação novamente" << std::endl;
+    }
+    else
+    {
+      account->Credit(value);
+    }
   }
 
   void DebitAccount(int accountNumber, int value)
@@ -37,7 +45,11 @@ public:
     std::list<Account>::iterator account;
     account = FindAccount(accountNumber);
 
-    if (account->GetBalance() - value < 0)
+    if (value < 0)
+    {
+      std::cout << "Valor informado não pode ser negativo, favor realizar operação novamente" << std::endl;
+    }
+    else if (account->GetBalance() - value < 0)
     {
       std::cout << "Saldo em conta insuficiente para debitar este valor" << std::endl;
     }
