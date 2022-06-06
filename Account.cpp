@@ -17,7 +17,7 @@ public:
   Account(int acountNumber)
   {
     number = acountNumber;
-    balance = 5.0f;
+    balance = 0.0f;
   }
 
   int GetNumber()
@@ -27,7 +27,6 @@ public:
 
   float GetBalance()
   {
-    std::cout << balance << std::endl;
     return balance;
   }
 
