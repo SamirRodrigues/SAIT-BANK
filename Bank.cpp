@@ -20,42 +20,46 @@ public:
 
   float GetBalance(int accountNumber)
   {
-    Account *account = new Account;
+    std::list<Account>::iterator account;
     account = FindAccount(accountNumber);
     return account->GetBalance();
   }
 
   void CreditAccount(int accountNumber, int value)
   {
-    Account *account;
+    std::list<Account>::iterator account;
     account = FindAccount(accountNumber);
     account->Credit(value);
   }
 
   void DebitAccount(int accountNumber, int value)
   {
-    Account *account;
+    std::list<Account>::iterator account;
     account = FindAccount(accountNumber);
     account->Debit(value);
   }
 
-  Account *FindAccount(int accountNumber)
+  std::list<Account>::iterator FindAccount(int accountNumber)
   {
-    Account *account_ptr;
-    for (Account account : accounts)
+    std::list<Account>::iterator account_ptr;
+    std::list<Account>::iterator it_begin = accounts.begin();
+    std::list<Account>::iterator it_end = accounts.end();
+
+    while (it_begin != it_end)
     {
-      if (account.GetNumber() == accountNumber)
+      if (accountNumber == it_begin->GetNumber())
       {
-        account_ptr = &account;
-        return account_ptr;
+        return it_begin;
       }
+      it_begin++;
     }
-    return &accountNULL;
+
+    return it_end;
   }
-  bool Transfer(int accountNumberCredit, int accountNumberDebit, int amount)
+  bool Transfer(int accountNumberDebit, int accountNumberCredit, int amount)
   {
-    Account *accountCredit = FindAccount(accountNumberCredit);
-    Account *accountDebit = FindAccount(accountNumberDebit);
+    std::list<Account>::iterator accountCredit = FindAccount(accountNumberCredit);
+    std::list<Account>::iterator accountDebit = FindAccount(accountNumberDebit);
 
     if (accountCredit->GetNumber() == accountNULL.GetNumber() || accountDebit->GetNumber() == accountNULL.GetNumber())
     {

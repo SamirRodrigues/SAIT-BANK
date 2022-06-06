@@ -16,7 +16,7 @@ void ConsultarSaldo(Bank *bank)
   int accountNumber;
   std::cout << "Digite o Número da Conta" << std::endl;
   std::cin >> accountNumber;
-  std::cout << bank->GetBalance(accountNumber) << std::endl;
+  std::cout << "Saldo na conta " << accountNumber << ": " << bank->GetBalance(accountNumber);
 }
 
 void Creditar(Bank *bank)
@@ -28,7 +28,7 @@ void Creditar(Bank *bank)
   std::cout << "Digite o valor a ser Creditado na conta " << accountNumber << ":" << std::endl;
   std::cin >> value;
   bank->CreditAccount(accountNumber, value);
-  std::cout << bank->GetBalance(accountNumber);
+  std::cout << value << " Creditado com sucesso";
 }
 
 void Debitar(Bank *bank)
@@ -70,6 +70,8 @@ int main()
   Bank bank;
   while (choice != 0)
   {
+    std::cout << std::endl
+              << std::endl;
     std::cout << "Menu" << std::endl;
     std::cout << "0- Sair" << std::endl;
     std::cout << "1- Cadastrar Conta" << std::endl;
