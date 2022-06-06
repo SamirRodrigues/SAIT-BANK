@@ -7,15 +7,23 @@ class Bank
 private:
 public:
   std::list<Account> accounts;
-  Account accountNULL;
   Bank()
   {
   }
 
   void AddAccount(int accountNumber)
   {
-    Account account(accountNumber);
-    accounts.push_back(account);
+
+    if (!ExistAccount)
+    {
+      Account account(accountNumber);
+      accounts.push_back(account);
+      std::cout << "Conta cadastrada com sucesso!";
+    }
+    else
+    {
+      std::cout << "Conta já existe, favor informe outro numero de conta";
+    }
   }
 
   float GetBalance(int accountNumber)
@@ -60,6 +68,24 @@ public:
     }
   }
 
+  bool ExistAccount(int accountNumber)
+  {
+    std::list<Account>::iterator account_ptr;
+    std::list<Account>::iterator it_begin = accounts.begin();
+    std::list<Account>::iterator it_end = accounts.end();
+
+    while (it_begin != it_end)
+    {
+      if (accountNumber == it_begin->GetNumber())
+      {
+        return true;
+      }
+      it_begin++;
+    }
+
+    return false;
+  }
+
   std::list<Account>::iterator FindAccount(int accountNumber)
   {
     std::list<Account>::iterator account_ptr;
@@ -77,6 +103,7 @@ public:
 
     return it_end;
   }
+
   bool Transfer(int accountNumberDebit, int accountNumberCredit, int amount)
   {
     // account debit -> conta que será debitada
@@ -90,7 +117,7 @@ public:
       return false;
     }
 
-    if (accountCredit->GetNumber() == accountNULL.GetNumber() || accountDebit->GetNumber() == accountNULL.GetNumber())
+    if (accountCredit == accounts.end() || accountDebit == accounts.end())
     {
       std::cout << "Conta Não Cadastrada!" << std::endl;
       return false;
