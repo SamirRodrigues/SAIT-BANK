@@ -36,7 +36,16 @@ public:
   {
     std::list<Account>::iterator account;
     account = FindAccount(accountNumber);
-    account->Debit(value);
+
+    if (account->GetBalance() - value < 0)
+    {
+      std::cout << "Saldo em conta insuficiente para debitar este valor" << std::endl;
+    }
+    else
+    {
+      account->Debit(value);
+      std::cout << "Valor debitado com sucesso" << std::endl;
+    }
   }
 
   std::list<Account>::iterator FindAccount(int accountNumber)
@@ -58,8 +67,16 @@ public:
   }
   bool Transfer(int accountNumberDebit, int accountNumberCredit, int amount)
   {
-    std::list<Account>::iterator accountCredit = FindAccount(accountNumberCredit);
+    // account debit -> conta que será debitada
     std::list<Account>::iterator accountDebit = FindAccount(accountNumberDebit);
+    // account credit -> conta que será creditada
+    std::list<Account>::iterator accountCredit = FindAccount(accountNumberCredit);
+
+    if (accountDebit->GetBalance() < amount)
+    {
+      std::cout << "A conta de origem não possui saldo suficiente, favor realizar operação com valor válido" << std::endl;
+      return false;
+    }
 
     if (accountCredit->GetNumber() == accountNULL.GetNumber() || accountDebit->GetNumber() == accountNULL.GetNumber())
     {
@@ -67,8 +84,8 @@ public:
       return false;
     }
 
-    accountCredit->Credit(amount);
     accountDebit->Debit(amount);
+    accountCredit->Credit(amount);
 
     return true;
   }
