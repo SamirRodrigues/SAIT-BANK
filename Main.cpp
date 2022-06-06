@@ -4,10 +4,18 @@
 
 void CadastrarConta(Bank *bank)
 {
+  int accountType;
+  std::cout << "Escolha o Tipo de Conta" << std::endl;
+  std::cout << "1- Conta Comum" << std::endl;
+  std::cout << "2- Conta Bonus" << std::endl;
+  std::cout << "3- Conta Poupança" << std::endl;
+
+  std::cin >> accountType;
+
   int accountNumber;
   std::cout << "Digite o Número da Conta" << std::endl;
   std::cin >> accountNumber;
-  bank->AddAccount(accountNumber);
+  bank->AddAccount(accountNumber, accountType);
   std::cout << "Conta Cadastrada Com Sucesso!" << std::endl;
 }
 
@@ -108,6 +116,6 @@ int main()
       break;
     }
   }
-
+  // std::cout << bank.GetPoints(1);
   return 0;
 }

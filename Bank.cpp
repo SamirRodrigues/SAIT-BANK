@@ -1,6 +1,6 @@
-#include <iostream>
+// #include <iostream>
 #include <list>
-#include "Account.cpp"
+#include "BonusAccount.cpp"
 
 class Bank
 {
@@ -11,11 +11,29 @@ public:
   Bank()
   {
   }
+  ~Bank(){
+    
+  }
 
-  void AddAccount(int accountNumber)
+  void AddAccount(int accountNumber, int accountType)
   {
     Account account(accountNumber);
-    accounts.push_back(account);
+    BonusAccount bonusAccount(accountNumber);
+
+    switch(accountType){
+      case 1:
+        accounts.push_back(account);
+        break;
+      case 2:
+        accounts.push_back(bonusAccount);
+        break;
+    }
+  }
+
+  int GetPoints(int accountNumber){
+    std::list<Account>::iterator account;
+    account = FindAccount(accountNumber);
+    return account->GetPoints();
   }
 
   float GetBalance(int accountNumber)
@@ -29,7 +47,7 @@ public:
   {
     std::list<Account>::iterator account;
     account = FindAccount(accountNumber);
-
+   
     if (value < 0)
     {
       std::cout << "Valor informado não pode ser negativo, favor realizar operação novamente" << std::endl;
@@ -38,6 +56,12 @@ public:
     {
       account->Credit(value);
     }
+
+    if(account->GetType() == 2){
+      int points = value / 100;
+      account->AddPoints(points);
+    }
+   
   }
 
   void DebitAccount(int accountNumber, int value)
@@ -90,14 +114,19 @@ public:
       return false;
     }
 
-    if (accountCredit->GetNumber() == accountNULL.GetNumber() || accountDebit->GetNumber() == accountNULL.GetNumber())
+    if (accountCredit->GetNumber() == 0 || accountDebit->GetNumber() == 0)
     {
       std::cout << "Conta Não Cadastrada!" << std::endl;
       return false;
-    }
+    } 
 
     accountDebit->Debit(amount);
     accountCredit->Credit(amount);
+
+    if(accountCredit->GetType() == 2){
+      int points = amount / 200;
+      accountCredit->AddPoints(points);
+    }
 
     return true;
   }
