@@ -1,6 +1,7 @@
 // #include <iostream>
 #include <list>
-#include "BonusAccount.cpp"
+#include "Account.cpp"
+// #include "BonusAccount.cpp"
 
 class Bank
 {
@@ -12,22 +13,20 @@ public:
   {
   }
   ~Bank(){
-    
+
   }
 
   void AddAccount(int accountNumber, int accountType)
   {
-    Account account(accountNumber);
-    BonusAccount bonusAccount(accountNumber);
-
-    switch(accountType){
-      case 1:
-        accounts.push_back(account);
-        break;
-      case 2:
-        accounts.push_back(bonusAccount);
-        break;
+    Account account(accountNumber, accountType);
+   
+    if(accountType == 2){
+      int points = 10;
+      account.AddPoints(points);
     }
+    
+    accounts.push_back(account);
+
   }
 
   int GetPoints(int accountNumber){
@@ -46,8 +45,7 @@ public:
   void CreditAccount(int accountNumber, int value)
   {
     std::list<Account>::iterator account;
-    account = FindAccount(accountNumber);
-   
+    account = FindAccount(accountNumber);   
     if (value < 0)
     {
       std::cout << "Valor informado não pode ser negativo, favor realizar operação novamente" << std::endl;
@@ -58,7 +56,7 @@ public:
     }
 
     if(account->GetType() == 2){
-      int points = value / 100;
+      int points = value / 100;      
       account->AddPoints(points);
     }
    

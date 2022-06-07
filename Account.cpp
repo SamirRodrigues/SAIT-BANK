@@ -5,6 +5,8 @@ class Account
   protected:
     int number;
     float balance;
+    int points;
+    int accountType;
   public:
     Account()
     {
@@ -12,10 +14,12 @@ class Account
       balance = 0.0f;
     }
 
-    Account(int acountNumber)
+    Account(int accountNumber, int typeOfAccount)
     {
-      number = acountNumber;
+      number = accountNumber;
       balance = 0.0f;
+      accountType = typeOfAccount;
+      points = 0;
     }
     ~Account(){}
 
@@ -39,7 +43,15 @@ class Account
       balance -= amount;
     }
 
-    virtual int GetType() ;
-    virtual void AddPoints(int pointsAmount) ;
-    virtual int GetPoints();
+    void AddPoints(int pointsAmount){
+      points += pointsAmount;
+    }
+
+    int GetPoints(){
+      return points;
+    }
+
+    int GetType(){
+      return accountType;
+    }
 };

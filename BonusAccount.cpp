@@ -1,10 +1,10 @@
-#include <iostream>
+// #include <iostream>
 #include "Account.cpp"
 
 class BonusAccount : public Account{
   protected:
     int points;
-    int accountType;
+    // int accountType;
 
   public:
     BonusAccount() : Account(){
@@ -12,18 +12,18 @@ class BonusAccount : public Account{
     }
     BonusAccount(int accountNumber) : Account(accountNumber){
       points = 10;
-      accountType = 2;
+      // accountType = 2;
     }
     ~BonusAccount(){
 
     }
-    void AddPoints(int pointsAmount){
+    void AddPoints(int pointsAmount) {
       points += pointsAmount;
     }
-    int GetType(){
-      return accountType;
-    }
-    int GetPoints(){
+    // int GetType() const{
+      // return accountType;
+    // }
+    int GetPoints() const {
       return points;
     }
 
