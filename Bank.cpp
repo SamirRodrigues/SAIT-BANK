@@ -128,4 +128,19 @@ public:
 
     return true;
   }
+
+  void ApplyYield(int accountNumber, float value)
+  {
+    std::list<Account>::iterator account;
+    account = FindAccount(accountNumber);
+    
+    if(account->GetType() == 3){
+      account->Yield(value);
+      std::cout << "Juros Aplicado com Sucesso" << std::endl;
+    }
+    else{
+      std::cout << "É preciso Possuir uma Conta Poupança para Render Juros" << std::endl;
+    }
+  }
+
 };

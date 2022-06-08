@@ -43,6 +43,9 @@ class Account
       balance -= amount;
     }
 
+  void Yield(float amount){
+    balance += ((balance * amount)/100);
+  }
     void AddPoints(int pointsAmount){
       points += pointsAmount;
     }
