@@ -15,10 +15,10 @@ public:
   }
   void AddAccount(int accountNumber, int accountType, float initialBalance)
   {
-   if(accountType != 1)
-   {
-       initialBalance = 0;
-   }
+    if(accountType != 1)
+    {
+        initialBalance = 0;
+    }
       
     Account account(accountNumber, accountType, initialBalance);
    
@@ -124,8 +124,10 @@ public:
     accountCredit->Credit(amount);
 
     if(accountCredit->GetType() == 2){
-      int points = amount / 200;
+
+      int points = amount / 150;
       accountCredit->AddPoints(points);
+      
     }
 
     return true;
