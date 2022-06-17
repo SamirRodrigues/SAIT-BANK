@@ -14,7 +14,7 @@ void CadastrarConta(Bank *bank)
 
   std::cin >> accountType;
 
-  if(accountType == 3){
+  if(accountType != 2){
     std::cout << "Qual o saldo inicial?" << std::endl;
 
     std::cin >> initialBalance;
@@ -22,6 +22,8 @@ void CadastrarConta(Bank *bank)
   }
 
   int accountNumber;
+  float initialBalance;
+
   std::cout << "Digite o Número da Conta" << std::endl;
   std::cin >> accountNumber;
   

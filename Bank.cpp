@@ -29,7 +29,7 @@ public:
       account.AddPoints(points);
     }
 
-    if (accountType == 3)
+    if (accountType != 2 )
     {
       accounts.push_back(savingAccount);
     }
