@@ -10,15 +10,17 @@ public:
   std::list<Account> accounts;
   Account accountNULL;
   Bank()
-  {
-  }
+  {  }
   ~Bank(){
-
   }
-
-  void AddAccount(int accountNumber, int accountType)
+  void AddAccount(int accountNumber, int accountType, float initialBalance)
   {
-    Account account(accountNumber, accountType);
+   if(accountType != 1)
+   {
+       initialBalance = 0;
+   }
+      
+    Account account(accountNumber, accountType, initialBalance);
    
     if(accountType == 2){
       int points = 10;

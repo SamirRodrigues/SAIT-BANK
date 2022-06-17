@@ -13,9 +13,18 @@ void CadastrarConta(Bank *bank)
   std::cin >> accountType;
 
   int accountNumber;
+  float initialBalance;
+
   std::cout << "Digite o Número da Conta" << std::endl;
   std::cin >> accountNumber;
-  bank->AddAccount(accountNumber, accountType);
+  if(accountType == 1)
+    {
+  std::cout << "Qual o saldo inicial da Conta?" << std::endl;
+  std::cin >> initialBalance;
+        
+    }
+  
+  bank->AddAccount(accountNumber, initialBalance);
   std::cout << "Conta Cadastrada Com Sucesso!" << std::endl;
 }
 
