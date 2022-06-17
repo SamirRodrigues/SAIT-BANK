@@ -21,6 +21,13 @@ class Account
       accountType = typeOfAccount;
       points = 0;
     }
+    Account(int accountNumber, int typeOfAccount, float initialBalance)
+    {
+      number = accountNumber;
+      balance = initialBalance;
+      accountType = typeOfAccount;
+      points = 0;
+    }
     ~Account(){}
 
     int GetNumber()
