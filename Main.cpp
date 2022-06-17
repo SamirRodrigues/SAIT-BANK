@@ -1,19 +1,31 @@
-#include <iostream>
-#include <list>
+// #include <iostream>
+// #include <list>
 #include "Bank.cpp"
 
 void CadastrarConta(Bank *bank)
 {
+  int accountType;
+  std::cout << "Escolha o Tipo de Conta" << std::endl;
+  std::cout << "1- Conta Comum" << std::endl;
+  std::cout << "2- Conta Bonus" << std::endl;
+  std::cout << "3- Conta Poupança" << std::endl;
+
+  std::cin >> accountType;
+
   int accountNumber;
   float initialBalance;
 
   std::cout << "Digite o Número da Conta" << std::endl;
   std::cin >> accountNumber;
   
-  std::cout << "Qual o saldo inicial da Conta?" << std::endl;
-  std::cin >> initialBalance;
+  if(accountType == 1)
+  {
+    std::cout << "Qual o saldo inicial da Conta?" << std::endl;
+    std::cin >> initialBalance;
+        
+  }
   
-  bank->AddAccount(accountNumber, initialBalance);
+  bank->AddAccount(accountNumber, accountType, initialBalance);
   std::cout << "Conta Cadastrada Com Sucesso!" << std::endl;
 }
 
@@ -69,6 +81,16 @@ void Transferencia(Bank *bank)
   }
 }
 
+void RenderJuros(Bank *bank){
+  int accountNumber;
+  float value;
+  std::cout << "Digite o Número da Conta" << std::endl;
+  std::cin >> accountNumber;
+  std::cout << "Digite a taxa de juros para ser calculado a conta " << accountNumber << ":" << std::endl;
+  std::cin >> value;
+  bank->ApplyYield(accountNumber, value);
+}
+
 int main()
 {
 
@@ -85,6 +107,8 @@ int main()
     std::cout << "3- Creditar valor da Conta" << std::endl;
     std::cout << "4- Debitar valor da Conta" << std::endl;
     std::cout << "5- Realizar transferencia" << std::endl;
+    std::cout << "6- Render Juros" << std::endl;
+
     std::cin >> choice;
 
     switch (choice)
@@ -107,6 +131,9 @@ int main()
     case 5:
       Transferencia(&bank);
       break;
+    case 6:
+      RenderJuros(&bank);
+      break;
     default:
       std::cout << std::endl;
       std::cout << ">> Digite um valor válido <<" << std::endl;
@@ -114,6 +141,5 @@ int main()
       break;
     }
   }
-
   return 0;
 }

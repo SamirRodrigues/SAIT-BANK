@@ -1,42 +1,68 @@
-
 #include <iostream>
 
 class Account
 {
-private:
-  int number;
-  float balance;
+  protected:
+    int number;
+    float balance;
+    int points;
+    int accountType;
+  public:
+    Account()
+    {
+      number = 0;
+      balance = 0.0f;
+    }
 
-public:
-  Account()
-  {
-    number = 0;
-    balance = 0.0f;
-  }
+    Account(int accountNumber, int typeOfAccount)
+    {
+      number = accountNumber;
+      balance = 0.0f;
+      accountType = typeOfAccount;
+      points = 0;
+    }
+   
 
-  Account(int acountNumber, float initialBalance)
+  Account(int acountNumber, int typeOfAccount, float initialBalance)
   {
     number = acountNumber;
     balance = initialBalance;
+    accountType = typeOfAccount;
+    points = 0;
   }
+   ~Account(){}
+    int GetNumber()
+    {
+      return number;
+    }
 
-  int GetNumber()
-  {
-    return number;
-  }
+    float GetBalance()
+    {
+      return balance;
+    }
 
-  float GetBalance()
-  {
-    return balance;
-  }
+    void Credit(int amount)
+    {
+      balance += amount;
+    }
 
-  void Credit(int amount)
-  {
-    balance += amount;
-  }
+    void Debit(int amount)
+    {
+      balance -= amount;
+    }
 
-  void Debit(int amount)
-  {
-    balance -= amount;
+  void Yield(float amount){
+    balance += ((balance * amount)/100);
   }
+    void AddPoints(int pointsAmount){
+      points += pointsAmount;
+    }
+
+    int GetPoints(){
+      return points;
+    }
+
+    int GetType(){
+      return accountType;
+    }
 };
