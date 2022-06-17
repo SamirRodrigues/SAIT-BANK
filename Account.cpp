@@ -14,10 +14,10 @@ public:
     balance = 0.0f;
   }
 
-  Account(int acountNumber)
+  Account(int acountNumber, float initialBalance)
   {
     number = acountNumber;
-    balance = 0.0f;
+    balance = initialBalance;
   }
 
   int GetNumber()

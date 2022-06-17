@@ -12,9 +12,9 @@ public:
   {
   }
 
-  void AddAccount(int accountNumber)
+  void AddAccount(int accountNumber, float initialBalance)
   {
-    Account account(accountNumber);
+    Account account(accountNumber, initialBalance);
     accounts.push_back(account);
   }
 
