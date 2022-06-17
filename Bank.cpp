@@ -16,17 +16,24 @@ public:
 
   }
 
-  void AddAccount(int accountNumber, int accountType)
+  void AddAccount(int accountNumber, int accountType, float initialBalance)
   {
+    
     Account account(accountNumber, accountType);
-   
+
+    Account savingAccount(accountNumber, accountType, initialBalance);
+    
     if(accountType == 2){
       int points = 10;
       account.AddPoints(points);
     }
     
-    accounts.push_back(account);
-
+    if(accountType == 3){
+      accounts.push_back(savingAccount);
+    }
+    else{
+      accounts.push_back(account);
+    }
   }
 
   int GetPoints(int accountNumber){
