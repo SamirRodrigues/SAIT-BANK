@@ -10,24 +10,24 @@ public:
   std::list<Account> accounts;
   Account accountNULL;
   Bank()
-  {
+  {  }
+  ~Bank(){
   }
-  ~Bank()
-  {
-  }
-
   void AddAccount(int accountNumber, int accountType, float initialBalance)
   {
-
-    Account account(accountNumber, accountType);
-
-    Account savingAccount(accountNumber, accountType, initialBalance);
-
-    if (accountType == 2)
+    if(accountType != 1)
     {
+        initialBalance = 0;
+    }
+      
+    Account account(accountNumber, accountType, initialBalance);
+   
+    if(accountType == 2){
       int points = 10;
       account.AddPoints(points);
     }
+    
+    accounts.push_back(account);
 
     if (accountType != 2 )
     {
@@ -137,10 +137,11 @@ public:
     accountDebit->Debit(amount);
     accountCredit->Credit(amount);
 
-    if (accountCredit->GetType() == 2)
-    {
-      int points = amount / 200;
+    if(accountCredit->GetType() == 2){
+
+      int points = amount / 150;
       accountCredit->AddPoints(points);
+      
     }
 
     return true;
