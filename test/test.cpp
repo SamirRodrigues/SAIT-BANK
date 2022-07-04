@@ -1,7 +1,7 @@
 #define CATCH_CONFIG_MAIN
 
-#include "test/catch.hpp"
-#include "src/bank.cpp"
+#include "catch.hpp"
+#include "../src/Bank.cpp"
 
 TEST_CASE("Testando Account.cpp"){
   Account a( 1, 1, 250.00f);
