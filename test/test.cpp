@@ -67,8 +67,8 @@ TEST_CASE("Testando Bank.cpp"){
     bank.CreditAccount(a.GetNumber(), 200);
     REQUIRE(bank.GetBalance(a.GetNumber()) == a.GetBalance() + 200);
   }
-  SECTION("testando DeditAccount()"){
-    bank.DeditAccount(a.GetNumber(), 200);
+  SECTION("testando DebitAccount()"){
+    bank.DebitAccount(a.GetNumber(), 200);
     REQUIRE(bank.GetBalance(a.GetNumber()) == a.GetBalance() - 200);
   }
   SECTION("testando Transfer()"){
