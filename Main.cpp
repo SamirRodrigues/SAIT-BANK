@@ -1,6 +1,6 @@
 // #include <iostream>
 // #include <list>
-#include "Bank.cpp"
+#include "src/Bank.cpp"
 
 void CadastrarConta(Bank *bank)
 {

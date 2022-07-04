@@ -2,8 +2,8 @@ CXX = g++
 CXXFLAGS = -Wall -Werror -Wextra -pedantic -std=c++17 -g -fsanitize=address
 LDFLAGS =  -fsanitize=address
 
-SRC = Account.cpp Bank.cpp Main.cpp
-SRCTEST = Account.cpp Bank.cpp test/test.cpp
+SRC = src/Account.cpp src/Bank.cpp Main.cpp
+SRCTEST = src/Account.cpp src/Bank.cpp test.cpp
 OBJ = $(SRC:.cc=.o)
 OBJTEST = $(SRCTEST:.cc=.o)
 EXEC = run
