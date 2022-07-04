@@ -29,14 +29,6 @@ public:
     
     accounts.push_back(account);
 
-    if (accountType != 2 )
-    {
-      accounts.push_back(savingAccount);
-    }
-    else
-    {
-      accounts.push_back(account);
-    }
   }
 
   int GetPoints(int accountNumber)
