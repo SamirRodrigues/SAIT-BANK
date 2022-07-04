@@ -3,7 +3,7 @@
 #include "catch.hpp"
 #include "../bank.cpp"
 
-TEST_CASE("testando Account.cpp"){
+TEST_CASE("Testando Account.cpp"){
   Account a( 1, 1, 250.00f);
   Account b( 2, 2, 250.00f);
   Account c( 3, 3, 250.00f);
@@ -39,5 +39,41 @@ TEST_CASE("testando Account.cpp"){
     REQUIRE(a.GetType() == 1);
     REQUIRE(b.GetType() == 2);
     REQUIRE(c.GetType() == 3);
+  }
+}
+
+TEST_CASE("Testando Bank.cpp"){
+  Bank bank;
+  Account a( 1, 1, 250.00f);
+  Account b( 2, 2, 350.00f);
+  Account c( 3, 3, 450.00f);
+
+  bank.accounts.push_back(a);
+  bank.accounts.push_back(b);
+  bank.accounts.push_back(c);
+
+  SECTION("testando FindAccount()"){
+    REQUIRE(bank.FindAccount(a.GetNumber())->GetBalance() == a.GetBalance());
+    REQUIRE(bank.FindAccount(b.GetNumber())->GetBalance() == b.GetBalance());
+    REQUIRE(bank.FindAccount(c.GetNumber())->GetBalance() == c.GetBalance());
+  }
+  SECTION("testando GetPoints()"){
+    REQUIRE(bank.GetPoints(b.GetNumber()) == a.GetPoints());
+  }
+  SECTION("testando GetBalance()"){
+    REQUIRE(bank.GetBalance(a.GetNumber()) == a.GetBalance());
+  }
+  SECTION("testando CreditAccount()"){
+    bank.CreditAccount(a.GetNumber(), 200);
+    REQUIRE(bank.GetBalance(a.GetNumber()) == a.GetBalance() + 200);
+  }
+  SECTION("testando DebitAccount()"){
+    bank.DebitAccount(a.GetNumber(), 200);
+    REQUIRE(bank.GetBalance(a.GetNumber()) == a.GetBalance() - 200);
+  }
+  SECTION("testando Transfer()"){
+    bank.Transfer(a.GetNumber(), b.GetNumber(), 200);
+    REQUIRE(bank.GetBalance(a.GetNumber()) == a.GetBalance() - 200);
+    REQUIRE(bank.GetBalance(b.GetNumber()) == b.GetBalance() + 200);
   }
 }

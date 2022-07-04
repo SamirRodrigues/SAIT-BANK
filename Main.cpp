@@ -22,7 +22,6 @@ void CadastrarConta(Bank *bank)
   }
 
   int accountNumber;
-  float initialBalance;
 
   std::cout << "Digite o Número da Conta" << std::endl;
   std::cin >> accountNumber;
