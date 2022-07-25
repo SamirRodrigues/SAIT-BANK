@@ -21,11 +21,12 @@ jobs:
     - name: Run Unit Tests
       run: ./runtest
 
-    # - name: zip folder
-    #   run: git archive Release --format=zip --output=SAIT-BANK-BUILD.zip
+    - name: zip folder
+      run: pwd 
+      # git archive Release --format=zip --output=SAIT-BANK-BUILD.zip
     
     - name: deploying zip folder
       uses: actions/upload-artifact@v3
       with:
-        name: system-package
+        name: assets-for-download
         path: home/runner/work/SAIT-BANK/SAIT-BANK
