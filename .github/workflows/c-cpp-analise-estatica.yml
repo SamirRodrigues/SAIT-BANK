@@ -28,4 +28,4 @@ jobs:
       uses: actions/upload-artifact@v3
       with:
         name: system-package
-        path: home/runner/work/SAIT-BANK
+        path: home/runner/work/SAIT-BANK/SAIT-BANK
