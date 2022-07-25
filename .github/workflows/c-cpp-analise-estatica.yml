@@ -20,8 +20,10 @@ jobs:
       run: cppcheck --enable=all Main.cpp
     - name: Run Unit Tests
       run: ./runtest
-    - name: zip folder
-      run: git archive Release --format=zip --output=SAIT-BANK-BUILD.zip
+
+    # - name: zip folder
+    #   run: git archive Release --format=zip --output=SAIT-BANK-BUILD.zip
+    
     - name: deploying zip folder
       uses: actions/upload-artifact@v3
       with:
