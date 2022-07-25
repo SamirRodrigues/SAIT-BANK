@@ -1,0 +1,28 @@
+name: C/C++ CI Release
+
+on:
+  pull_request:
+    branches: [ "Release" ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+    
+    - name: Install cppcheck
+      run: sudo apt-get install cppcheck
+    - name: Make
+      run: make
+    - name: Execute cppcheck 
+      run: cppcheck --enable=all Main.cpp
+    - name: Run Unit Tests
+      run: ./runtest 
+    - name: deploying zip folder
+      uses: actions/upload-artifact@v3
+      with:
+        name: system-package
+        path: /home/runner/work/SAIT-BANK/SAIT-BANK
+
